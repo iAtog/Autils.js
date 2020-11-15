@@ -1,0 +1,22 @@
+{
+  "name": "autils.js",
+  "version": "0.1.0",
+  "description": "Timeout function in real time.",
+  "main": "index.js",
+  "repository": {
+	"type": "git",
+	"url": "git+https://github.com/iAtog/Autils.js.git"
+  },
+  "homepage": "https://github.com/iAtog/Autils.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "timeout",
+    "realtime",
+    "callbacks"
+  ],
+  "author": "iatog",
+  "license": "ISC"
+}
