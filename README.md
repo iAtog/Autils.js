@@ -6,7 +6,7 @@ Some uses have been changed:
 · More order in the cache file, you will have to restart the cache in order to make it work properly. `require('autils.js').restartCache();`
 · The use of `<Package>.manage();` for Timeout has been changed to `<Package>.timeout.manage();`.
 · A new function has been added: "JSONManager", this function serves to make the handling of JSON files easier.
-### Timeout
+## Timeout
 It is a timeout that is saved, that is, if you end the app when you start it again it will continue until the estimated time in which it will end.
 
 ```
@@ -23,7 +23,7 @@ index.setTimeout(3000, function() {
     console.log("Atog");
 });
 ```
-### HWID
+## HWID
 You get the identification of the hardware, this only gets the id where the program NodeJS runs.
 ```
 const index = require('autils.js');
@@ -33,7 +33,7 @@ index.HWID()
     .then(x => console.log(x))
     .catch(x => console.error(x));
 ```
-### Discord Guild MongoDB Database
+## Discord Guild MongoDB Database
 It's an addon for your discord bot, the code uses structures so you can just invoke the guild to get the methods that are new.
 
 Here is an example of how to use it:
