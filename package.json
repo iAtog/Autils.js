@@ -24,7 +24,7 @@
     "crypto-js": "^4.0.0",
     "discord.js": "^12.4.1",
     "fs": "0.0.1-security",
-    "mongoose": "^5.10.15",
+    "mongoose": "^5.12.3",
     "winreg": "^1.2.4"
   }
 }

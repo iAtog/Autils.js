@@ -1,5 +1,5 @@
 const fs = require('fs');
-const file = __dirname+'/../cache/timeout.json';
+const file = __dirname+'/../timeout.json';
 
 module.exports = class Timeout {
     constructor(time=1, callback = Function) {
@@ -13,18 +13,25 @@ module.exports = class Timeout {
 }
 
 module.exports.manage = function() {
-    if(!fs.existsSync(file))fs.writeFileSync(file, "{timeout: []}", 'utf-8');
+    if(!fs.existsSync(file))fs.writeFileSync(file, '[]', 'utf-8');
     setInterval(functions.check, 2000);
 }
 
 let functions = {
-    end: function(key="") {
+    /**
+     * Cancel timeout
+     * @param {String} key 
+     */
+    end: function(key) {
         endC(key)
     },
+    /**
+     * Check all timeouts
+     */
     check: function() {
         let data = require(file);
-		if(!data.timeout) {
-		    data.timeout = [];
+		if(!data) {
+		    data = [];
 			save(data);
 		}
         data.filter(x => x != null).forEach(time => {
@@ -37,13 +44,25 @@ let functions = {
             };
         });
     },
-    get: function(what="") {
+    /**
+     * Get a timeout
+     * @param {String} what 
+     */
+    get: function(what) {
         return functions.fetch().filter(x => x != null && x.key == what);
     },
+    /**
+     * Fetch file
+     */
     fetch: function() {
-        return require(file).timeout.filter(x => x !== null);
+        return require(file).filter(x => x !== null);
     },
-    add: function(time=1, callback) {
+    /**
+     * Add a new timeout
+     * @param {Number} time 
+     * @param {Function} callback 
+     */
+    add: function(time, callback) {
         let data = require(file);
         return new Promise(async(s,r) => {
             let x = {
@@ -54,7 +73,7 @@ let functions = {
                 endAt: (Date.now()+time),
                 callback
             }
-            data.timeout.push(x);
+            data.push(x);
             try {fs.writeFileSync(file, JSON.stringify(data), "utf-8");
             }catch(e) {r(e);}
             s(x)
@@ -73,7 +92,7 @@ function generate(length=8) {
 
 function endC(key="") {
     let data = require(file);
-    let time = data.timeout.find((x) => x != null && x.key == key);
+    let time = data.find((x) => x != null && x.key == key);
     time.ended = true;
     time.callback = generate(28);
     fs.writeFileSync(file, JSON.stringify(data), 'utf-8');
