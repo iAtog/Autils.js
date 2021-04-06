@@ -3,17 +3,21 @@ const index = require('./index.js');
 /* Manage all timeouts */
 index.timeout.manage();
 
+/**
+ * 
+ */
+let arg = {asmr: "how are you?"};
+let arg2 = "yes brother";
+index.timeout.loadArgs({
+    name: "arg",
+    value: arg
+});
 /*
  * Start a timeout function with time and callback
  * 3 seconds for wait :)
 */
-let arg = "says hello";
-index.timeout.loadArgs({
-    name: "myArg",
-    value: arg
-});
 index.setTimeout(3000, function() {
-    console.log("Atog "+arg);
+    console.log("Atog, "+arg.asmr);
 });
 
 // JSON

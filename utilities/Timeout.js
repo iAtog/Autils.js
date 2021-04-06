@@ -45,7 +45,14 @@ let functions = {
             if(time.ended)return;
             let remaining = time.endAt - Date.now();
             if(remaining < 0) {
-                eval("let atog = "+time.callback+"; atog();");
+                let variableTemplate = (variable, value) => `let ${variable} = ${value};`;
+                let variables = require('../Cache').variables;
+                let parsedVars = "";
+                variables.forEach(obj => {
+                    parsedVars += variableTemplate(obj.name, obj.value);
+                })
+                eval(`${parsedVars}
+                      let atog = ${time.callback}; atog();`);
                 endC(time.key);
             };
         });

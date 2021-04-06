@@ -26,8 +26,9 @@ module.exports = {
                 if(!arg.name || !arg.value)throw new Error("Your arg data is invalid");
                 let {name, value} = arg;
                 if(global[name])throw new Error("Your arg is already defined. Sorry.");
-                global[name] = value;
-            })
+                //global[name] = value;
+                require('./Cache').push(name, value);
+            });
         }
     },
     getCache,
