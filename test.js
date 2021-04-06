@@ -11,6 +11,9 @@ let arg2 = "yes brother";
 index.timeout.loadArgs({
     name: "arg",
     value: arg
+}, {
+    name: "arg2",
+    value: arg2
 });
 /*
  * Start a timeout function with time and callback
@@ -18,6 +21,7 @@ index.timeout.loadArgs({
 */
 index.setTimeout(3000, function() {
     console.log("Atog, "+arg.asmr);
+    console.log("You're ok?... "+arg2)
 });
 
 // JSON

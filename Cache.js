@@ -8,7 +8,10 @@ module.exports.variables = variables;
 module.exports.push = (name, value) => {
     if(typeof value === 'object') {
         variables.push({name, value:JSON.stringify(value)});
-    }else{
+    }else if(typeof value === 'string') {
+        variables.push({name, value:'"'+value+'"'});
+    }
+    else{
         variables.push({name, value:value.toString()});
     }
 };
