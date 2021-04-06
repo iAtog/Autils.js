@@ -2,13 +2,19 @@ const fs = require('fs');
 const file = __dirname+'/../timeout.json';
 
 module.exports = class Timeout {
-    constructor(time=1, callback = Function) {
+    /**
+     * 
+     * @param {Number} time 
+     * @param {Function} callback 
+     */
+    constructor(time, callback) {
         if(isNaN(time) || !(callback instanceof Function)) throw new Error("Constructor is not valid");
         this.callback = callback;
         this.time = time;
         
         functions.add(this.time, this.callback.toString());
     }
+
     
 }
 

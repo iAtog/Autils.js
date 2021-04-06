@@ -7,8 +7,13 @@ index.timeout.manage();
  * Start a timeout function with time and callback
  * 3 seconds for wait :)
 */
+let arg = "says hello";
+index.timeout.loadArgs({
+    name: "myArg",
+    value: arg
+});
 index.setTimeout(3000, function() {
-    console.log("Atog");
+    console.log("Atog "+arg);
 });
 
 // JSON
