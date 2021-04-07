@@ -82,11 +82,13 @@ let functions = {
         return new Promise(async (s, r) => {
             let variableTemplate = (variable, value) => `let ${variable} = ${value};`;
             let parsedVars = "";
-            if(typeof args !== 'undefined') {
+            if(typeof args !== 'undefined' && typeof args === 'object') {
                 args.forEach(arg => {
                     let parsed = parseVariable(arg.name, arg.value);
                     parsedVars += variableTemplate(parsed.name, parsed.value);
                 });
+            }else{
+                console.log("[WARN] autils.js: cannot parse the args");
             }
             let x = {
                 key: generate(8),
