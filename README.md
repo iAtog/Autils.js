@@ -2,9 +2,9 @@
 It is a small library in which I seek to make small presentations and facilitate the code in the programming language **JavaScript**, making codes for the utility of the community I do that facilitate and save making systems, lines and checks. I hope you use the library, any problem is the Issues category.
 
 ## Changelog
-Some uses have been changed:
-· More order in the cache file, you will have to restart the cache in order to make it work properly. `require('autils.js').restartCache();`
-· The use of `<Package>.manage();` for Timeout has been changed to `<Package>.timeout.manage();`.
+Some uses have been changed:<br>
+· More order in the cache file, you will have to restart the cache in order to make it work properly. `require('autils.js').restartCache();`<br>
+· The use of `<Package>.manage();` for Timeout has been changed to `<Package>.timeout.manage();`. <br>
 · A new function has been added: "JSONManager", this function serves to make the handling of JSON files easier.
 ## Timeout
 It is a timeout that is saved, that is, if you end the app when you start it again it will continue until the estimated time in which it will end.
