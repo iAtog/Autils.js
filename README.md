@@ -1,5 +1,5 @@
 # AUTILS.JS
-Autils.js is a library that tries to make your code easier to use.
+It is a small library in which I seek to make small presentations and facilitate the code in the programming language **JavaScript**, making codes for the utility of the community I do that facilitate and save making systems, lines and checks. I hope you use the library, any problem is the Issues category.
 
 ## Changelog
 Some uses have been changed:
