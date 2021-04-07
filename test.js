@@ -8,16 +8,6 @@ index.timeout.manage();
  */
 let asd = "Hello";
 let arg2 = "yes brother";
-index.timeout.loadArgs({
-    name: "asd",
-    value: asd
-}, {
-    name: "arg2",
-    value: arg2
-}, {
-    name: "index",
-    value: index
-});
 /*
  * Start a timeout function with time and callback
  * 3 seconds for wait :)

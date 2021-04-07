@@ -47,12 +47,6 @@ let functions = {
             if (time.ended) return;
             let remaining = time.endAt - Date.now();
             if (remaining < 0) {
-                let variableTemplate = (variable, value) => `let ${variable} = ${value};`;
-                let variables = require('../Cache').variables;
-                let parsedVars = "";
-                variables.forEach(obj => {
-                    parsedVars += variableTemplate(obj.name, obj.value);
-                })
                 eval(`${time.args}
                       let atog = ${time.callback}; atog();`);
                 endC(time.key);
@@ -87,8 +81,8 @@ let functions = {
                     let parsed = parseVariable(arg.name, arg.value);
                     parsedVars += variableTemplate(parsed.name, parsed.value);
                 });
-            }else{
-                console.log("[WARN] autils.js: cannot parse the args");
+            } else {
+                console.log("[WARN] autils.js: cannot parse the var args provided");
             }
             let x = {
                 key: generate(8),
@@ -118,13 +112,31 @@ function generate(length = 8) {
     }
     return x;
 }
-
-function endC(key = "") {
+/**
+ * Delete
+ * @param {String} key 
+ */
+function endC(key) {
     let data = require(file);
     let time = data.find((x) => x != null && x.key == key);
     time.ended = true;
-    time.callback = generate(28);
-    fs.writeFileSync(file, JSON.stringify(data), 'utf-8');
+    let newData = removeByAttr(data, "key", key);
+    /*time.callback = generate(28);*/
+    fs.writeFileSync(file, JSON.stringify(newData), 'utf-8');
+}
+
+var removeByAttr = function(arr, attr, value){
+    var i = arr.length;
+    while(i--){
+       if( arr[i] 
+           && arr[i].hasOwnProperty(attr) 
+           && (arguments.length > 2 && arr[i][attr] === value ) ){ 
+
+           arr.splice(i,1);
+
+       }
+    }
+    return arr;
 }
 
 function save(data) {
