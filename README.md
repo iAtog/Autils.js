@@ -23,6 +23,24 @@ index.setTimeout(3000, function() {
     console.log("Atog");
 });
 ```
+Do you have failures with non-existent variables when executing the timeout?
+Don't worry, I've already patched that problem! Now you must specify the local arguments to be used in the function.
+Example:
+```
+// * You use the "manage" function *
+
+let hi = "hello world";
+
+index.setTimeout(5000, function() {
+    console.log(hi);
+}, [
+    {
+        name: "hi",
+        value: hi
+    }
+]);
+```
+**IMPORTANT**: The value in "name" must be the same as the variable name, or it will not work.
 ## HWID
 You get the identification of the hardware, this only gets the id where the program NodeJS runs.
 ```
