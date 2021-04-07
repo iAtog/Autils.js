@@ -6,23 +6,32 @@ index.timeout.manage();
 /**
  * 
  */
-let arg = {asmr: "how are you?"};
+let asd = "Hello";
 let arg2 = "yes brother";
 index.timeout.loadArgs({
-    name: "arg",
-    value: arg
+    name: "asd",
+    value: asd
 }, {
     name: "arg2",
     value: arg2
+}, {
+    name: "index",
+    value: index
 });
 /*
  * Start a timeout function with time and callback
  * 3 seconds for wait :)
 */
 index.setTimeout(3000, function() {
-    console.log("Atog, "+arg.asmr);
-    console.log("You're ok?... "+arg2)
-});
+    console.log("Atog, "+asd);
+    console.log("You're ok?... "+arg2);
+}, [{
+    name: "asd",
+    value: asd
+}, {
+    name: "arg2",
+    value: arg2
+}]);
 
 // JSON
 /*
