@@ -79,7 +79,6 @@ let functions = {
      */
     add: function (time, callback, args) {
         let data = require(file);
-        console.log(args.join(" "));
         return new Promise(async (s, r) => {
             let variableTemplate = (variable, value) => `let ${variable} = ${value};`;
             let parsedVars = "";
