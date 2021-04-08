@@ -13,6 +13,7 @@ let arg2 = "yes brother";
  * 3 seconds for wait :)
 */
 index.setTimeout(3000, function() {
+    if(asd === "Hello")
     console.log("Atog, "+asd);
     console.log("You're ok?... "+arg2);
 }, [{

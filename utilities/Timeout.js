@@ -47,8 +47,16 @@ let functions = {
             if (time.ended) return;
             let remaining = time.endAt - Date.now();
             if (remaining < 0) {
-                eval(`${time.args}
-                      let atog = ${time.callback}; atog();`);
+                try {
+                    eval(`
+                      ${time.args}
+                      let atog = ${time.callback}; 
+                      (async() => {
+                        atog();
+                      })();`);
+                } catch (err) {
+                    console.log("[autils.js|warn] " + err);
+                }
                 endC(time.key);
             };
         });
@@ -76,7 +84,7 @@ let functions = {
         return new Promise(async (s, r) => {
             let variableTemplate = (variable, value) => `let ${variable} = ${value};`;
             let parsedVars = "";
-            if(typeof args !== 'undefined' && typeof args === 'object') {
+            if (typeof args !== 'undefined' && typeof args === 'object') {
                 args.forEach(arg => {
                     let parsed = parseVariable(arg.name, arg.value);
                     parsedVars += variableTemplate(parsed.name, parsed.value);
@@ -125,16 +133,16 @@ function endC(key) {
     fs.writeFileSync(file, JSON.stringify(newData), 'utf-8');
 }
 
-var removeByAttr = function(arr, attr, value){
+var removeByAttr = function (arr, attr, value) {
     var i = arr.length;
-    while(i--){
-       if( arr[i] 
-           && arr[i].hasOwnProperty(attr) 
-           && (arguments.length > 2 && arr[i][attr] === value ) ){ 
+    while (i--) {
+        if (arr[i] &&
+            arr[i].hasOwnProperty(attr) &&
+            (arguments.length > 2 && arr[i][attr] === value)) {
 
-           arr.splice(i,1);
+            arr.splice(i, 1);
 
-       }
+        }
     }
     return arr;
 }
@@ -143,15 +151,27 @@ function save(data) {
     fs.writeFileSync(file, JSON.stringify(data), 'utf-8');
 }
 module.exports.functions = functions;
+
 function parseVariable(name, value) {
-    if(typeof value === 'object') {
-        return {name, value:JSON.stringify(value)};
-    }else if(typeof value === 'string') {
-        return {name, value:'"'+value+'"'};
-    }else if(typeof value === 'undefined') {
-        return {name, value:'"undefined"'}
-    }
-    else{
-        return {name, value:value.toString()};
+    if (typeof value === 'object') {
+        return {
+            name,
+            value: JSON.stringify(value)
+        };
+    } else if (typeof value === 'string') {
+        return {
+            name,
+            value: '"' + value + '"'
+        };
+    } else if (typeof value === 'undefined') {
+        return {
+            name,
+            value: '"undefined"'
+        }
+    } else {
+        return {
+            name,
+            value: value.toString()
+        };
     }
 }
