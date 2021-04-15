@@ -3,6 +3,9 @@ const index = require('./index.js');
 /* Manage all timeouts */
 index.timeout.manage();
 
+
+index.timeout.use(__dirname + "/customTimeout.json");
+
 /**
  * 
  */
@@ -23,6 +26,8 @@ index.setTimeout(3000, function() {
     name: "arg2",
     value: arg2
 }]);
+
+
 
 // JSON
 /*

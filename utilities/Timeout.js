@@ -1,5 +1,7 @@
 const fs = require('fs');
-const file = __dirname + '/../timeout.json';
+const fileDirectory = fs.readFileSync(__dirname + "/../timeoutFile.txt").toString();
+const defaultFile = __dirname + '/../timeout.json';
+const file = fileDirectory === "none" ? defaultFile : fileDirectory;
 const index = require('../index');
 
 module.exports = class Timeout {
@@ -109,6 +111,13 @@ let functions = {
             }
             s(x)
         });
+    },
+    /**
+     * Sets a custom directory to timeout file
+     * @param {String} dir The directory of the custom timeout file
+     */
+    use: async function(dir) {
+        fs.writeFileSync(__dirname + "/../timeoutFile.txt", dir, 'utf-8');
     }
 }
 

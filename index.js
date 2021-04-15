@@ -21,7 +21,9 @@ let template = {
 module.exports = {
     setTimeout: set,
     timeout: {
-        manage: Timeout.manage
+        manage: Timeout.manage,
+        use: Timeout.functions.use,
+        functions: Timeout.functions
     },
     getTimeoutCache,
     restartCache: function () {
